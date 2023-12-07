@@ -1,0 +1,24 @@
+query PageAboutMeCollection {
+  pageAboutMeCollection(limit: 1) {
+    total
+    items {
+      title
+      location {
+        lat
+        lon
+      }
+      description {
+        json
+      }
+      portrait {
+        fileName
+        height
+        width
+        __typename
+        url
+        size
+        description
+      }
+    }
+  }
+}

@@ -1,10 +1,13 @@
 {
   "article": {
-    "relatedArticles": "Related articles",
+    "relatedArticles": "Related works",
     "featured": "featured"
   },
+  "posts": {
+    "allPosts": "All works"
+  },
   "landingPage": {
-    "latestArticles": "Latest articles"
+    "latestArticles": "Latest works"
   },
   "common": {
     "regionalSettings": "Regional Settings",
@@ -13,9 +16,8 @@
     "languageDrawer": "Toggle language drawer"
   },
   "footer": {
-    "aboutUs": "about us",
-    "description": "Our company specialises in the development of advanced technologies for a wide range of industries. We use cutting-edge techniques and algorithms to create intelligent systems that can help businesses automate tasks, improve efficiency, and drive innovation.",
-    "powerBy": "Powered by"
+    "aboutUs": "about me",
+    "description": "I am a artist specializing in ceramics and sculpture. I am currently based in Oslo."
   },
   "notFound": {
     "title": "Page not found",

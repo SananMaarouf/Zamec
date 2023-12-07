@@ -5,7 +5,10 @@ import { ArticleImage } from '@src/components/features/article';
 import { ComponentRichImage } from '@src/lib/__generated/sdk';
 
 export type EmbeddedEntryType = ComponentRichImage | null;
-
+/* 
+  in this file you handle how the different types of fields from a post
+  entry is to be presented. usually done for images and video and rich text 
+*/
 export interface ContentfulRichTextInterface {
   json: Document;
   links?:
