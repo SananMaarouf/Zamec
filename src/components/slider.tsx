@@ -11,15 +11,14 @@ interface SliderProps extends HTMLProps<HTMLDivElement> {
 
 export const ArticleSlider = ({ articles, className, ...props }: SliderProps) => {
   const settings = {
-    className: twMerge('center', className),
     dots: true,
     infinite: true,
-    speed: 500,
-    autoplay: true,
     slidesToShow: 3,
     slidesToScroll: 1,
-    initialSlide: 0,
-    swipeToSlide: true,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 5000,
+    cssEase: 'linear',
     responsive: [
       {
         breakpoint: 480,
