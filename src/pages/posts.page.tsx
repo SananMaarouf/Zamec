@@ -12,6 +12,26 @@ import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
+/**
+ * posts.page.tsx is a Next.js page component responsible for:
+ * - rendering a list of all blog posts.
+ *
+ * It fetches all blog post data from:
+ * - the Contentful CMS and displays them in a grid layout.
+ *
+ * The component uses getStaticProps for:
+ * - data fetching at build time, which makes the page static and SEO-friendly.
+ *
+ * It also uses the useContentfulLiveUpdates hook to:
+ * - enable live updates for the blog post content.
+ *
+ * The page layout consists of a title and an ArticleTileGrid component:
+ * - The title is localized using the useTranslation hook from next-i18next.
+ * - The ArticleTileGrid component is used to display the blog posts in a grid layout.
+ *
+ * The page is wrapped in a Container component for consistent layout and spacing.
+ */
+
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 
@@ -39,9 +59,6 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const page = PostsData.pageLandingCollection?.items[0];
 
     const blogPostsData = await gqlClient.pageBlogPostCollection({
-      /* here you can limit the amount of posts to be shown in the index */
-      /* TODO: increase limit to 6 and create a carousel. showing 3 at a time 
-          definetly steal the carousel code from sanan.no */
       limit: 99,
       locale,
       order: PageBlogPostOrder.PublishedDateDesc,

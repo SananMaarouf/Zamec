@@ -11,7 +11,33 @@ import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 interface ArticleTileProps extends HTMLProps<HTMLDivElement> {
   article: PageBlogPostFieldsFragment;
 }
-
+/**
+ * ArticleTile.tsx is a React component responsible for:
+ * - rendering a single blog post tile.
+ *
+ * It accepts an:
+ * - `article` object and
+ * - `className` as props.
+ *
+ * The `article` object contains:
+ * - the blog post data fetched from the Contentful CMS.
+ *
+ * The `className` prop is optional and can be used to:
+ * - apply additional CSS classes to the component.
+ *
+ * The component uses the `useContentfulInspectorMode` hook for Contentful inspector mode.
+ *
+ * The tile consists of a blog post:
+ * - featured image,
+ * - title,
+ * - published date.
+ *
+ * The `CtfImage` component is used to display the featured image.
+ * The `FormatDate` component is used to format the published date.
+ *
+ * The tile is wrapped in a `Link` component,
+ * which makes the entire tile clickable and navigates to the blog post page when clicked.
+ */
 export const ArticleTile = ({ article, className }: ArticleTileProps) => {
   const { title, publishedDate } = article;
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });

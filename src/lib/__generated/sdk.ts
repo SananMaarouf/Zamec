@@ -1002,6 +1002,7 @@ export type PageBlogPost = Entry & {
   content?: Maybe<PageBlogPostContent>;
   contentfulMetadata: ContentfulMetadata;
   featuredImage?: Maybe<Asset>;
+  imageCollection?: Maybe<AssetCollection>;
   internalName?: Maybe<Scalars['String']>;
   linkedFrom?: Maybe<PageBlogPostLinkingCollections>;
   publishedDate?: Maybe<Scalars['DateTime']>;
@@ -1032,6 +1033,15 @@ export type PageBlogPostContentArgs = {
 export type PageBlogPostFeaturedImageArgs = {
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** To create individual blog posts [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/pageBlogPost) */
+export type PageBlogPostImageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -1140,6 +1150,7 @@ export type PageBlogPostFilter = {
   content_not_contains?: InputMaybe<Scalars['String']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   featuredImage_exists?: InputMaybe<Scalars['Boolean']>;
+  imageCollection_exists?: InputMaybe<Scalars['Boolean']>;
   internalName?: InputMaybe<Scalars['String']>;
   internalName_contains?: InputMaybe<Scalars['String']>;
   internalName_exists?: InputMaybe<Scalars['Boolean']>;
@@ -1666,6 +1677,7 @@ export type CfPageBlogPostNestedFilter = {
   content_not_contains?: InputMaybe<Scalars['String']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   featuredImage_exists?: InputMaybe<Scalars['Boolean']>;
+  imageCollection_exists?: InputMaybe<Scalars['Boolean']>;
   internalName?: InputMaybe<Scalars['String']>;
   internalName_contains?: InputMaybe<Scalars['String']>;
   internalName_exists?: InputMaybe<Scalars['Boolean']>;

@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { CtfImage } from '@src/components/features/contentful';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
+import { Gallery, Item } from 'react-photoswipe-gallery';
 
 interface ArticleHeroProps {
   article: PageBlogPostFieldsFragment;
@@ -40,7 +41,7 @@ interface ArticleHeroProps {
  * display the featured image,
  * and the `FormatDate` component is used to format the published date.
  */
-export const ArticleHero = ({
+export const ArticleHero2 = ({
   article,
   isFeatured,
   isReversedLayout = false,
@@ -51,48 +52,23 @@ export const ArticleHero = ({
   const { title, shortDescription, publishedDate } = article;
 
   return (
-    <div
-      className={twMerge(
-        `flex flex-col overflow-hidden rounded-2xl border border-gray300 shadow-lg`,
-        isReversedLayout ? 'lg:flex-row-reverse' : 'lg:flex-row',
-      )}
-    >
-      <div className="flex-1 basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
-        {article.featuredImage && (
-          <CtfImage
-            nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
-            {...article.featuredImage}
-          />
-        )}
-      </div>
-
-      <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:px-16 lg:py-12 xl:px-24">
-        <div className="flex flex-wrap items-center">
-          <div
-            className={twMerge(
-              'ml-auto hidden pl-2 text-xs text-gray600',
-              isReversedLayout ? 'lg:block' : '',
-            )}
-            {...inspectorProps({ fieldId: 'publishedDate' })}
-          >
-            <FormatDate date={publishedDate} />
-          </div>
-        </div>
-        <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
-        {shortDescription && (
-          <p className="mt-2" {...inspectorProps({ fieldId: 'shortDescription' })}>
-            {shortDescription}
-          </p>
-        )}
-        <div
-          className={twMerge('mt-2 text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
-          {...inspectorProps({ fieldId: 'publishedDate' })}
-        >
-          <h1>mobile</h1>
-          <FormatDate date={publishedDate} />
-          <h2> im here </h2>
-        </div>
-      </div>
+    <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:px-16 lg:py-12 xl:px-24">
+      {/* TODO: make work */}
+      {/* <Gallery>
+                {article.imageAssets.map((imageAsset, index) => (
+                    <Item
+                        key={index}
+                        original={imageAsset.url}
+                        thumbnail={imageAsset.url} // Replace with actual thumbnail URL if available
+                        width={imageAsset.width}
+                        height={imageAsset.height}
+                    >
+                        {({ ref, open }) => (
+                            <img ref={ref} onClick={open} src={imageAsset.url} alt={imageAsset.title} />
+                        )}
+                    </Item>
+                ))}
+            </Gallery> */}
     </div>
   );
 };

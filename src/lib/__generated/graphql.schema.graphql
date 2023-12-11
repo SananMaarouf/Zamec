@@ -700,6 +700,7 @@ type PageBlogPost implements Entry {
   content(locale: String): PageBlogPostContent
   contentfulMetadata: ContentfulMetadata!
   featuredImage(locale: String, preview: Boolean): Asset
+  imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
   internalName(locale: String): String
   linkedFrom(allowedLocales: [String]): PageBlogPostLinkingCollections
   publishedDate(locale: String): DateTime
@@ -756,6 +757,7 @@ input PageBlogPostFilter {
   content_not_contains: String
   contentfulMetadata: ContentfulMetadataFilter
   featuredImage_exists: Boolean
+  imageCollection_exists: Boolean
   internalName: String
   internalName_contains: String
   internalName_exists: Boolean
@@ -1094,6 +1096,7 @@ input cfPageBlogPostNestedFilter {
   content_not_contains: String
   contentfulMetadata: ContentfulMetadataFilter
   featuredImage_exists: Boolean
+  imageCollection_exists: Boolean
   internalName: String
   internalName_contains: String
   internalName_exists: Boolean
