@@ -31,12 +31,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         </Link>
       </Container>
 
-      {/* Tutorial: contentful-and-the-starter-template.md */}
-      {/* Uncomment the line below to make the Greeting field available to render */}
-      {/* <Container>
-      <div className="my-5 bg-colorTextLightest p-5 text-colorBlueLightest">{page.greeting}</div>
-      </Container> */}
-
       <Container className="mt-4">
         <h2 className="mb-2 md:mb-6">{t('landingPage.latestArticles')}</h2>
         <ArticleSlider articles={posts} />

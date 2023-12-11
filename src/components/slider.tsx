@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 
 import { ArticleTile } from '@src/components/features/article/ArticleTile';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
+import next from 'next';
 
 interface SliderProps extends HTMLProps<HTMLDivElement> {
   articles?: Array<PageBlogPostFieldsFragment | null>;
@@ -19,6 +20,7 @@ export const ArticleSlider = ({ articles, className, ...props }: SliderProps) =>
     speed: 2000,
     autoplaySpeed: 5000,
     cssEase: 'linear',
+
     responsive: [
       {
         breakpoint: 480,
