@@ -10,6 +10,24 @@ import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
+/**
+ * [slug].page.tsx is a Next.js page component responsible for rendering a specific blog post.
+ * It fetches the blog post data based on the slug provided
+ * in the URL and displays the post content.
+ *
+ * The component uses getStaticProps for
+ * data fetching at build time, which makes the page static and SEO-friendly.
+ * It also uses the useContentfulLiveUpdates hook to
+ * enable live updates for the blog post content.
+ *
+ * The page layout consists of several components:
+ * - SeoFields: for SEO optimization.
+ * - ArticleHero: for displaying the main blog post content.
+ * - ArticleContent: for displaying the detailed content of the blog post.
+ * - ArticleTileGrid: for displaying related blog posts.
+ *
+ * The page is wrapped in a Container component for consistent layout and spacing.
+ */
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 

@@ -1,9 +1,6 @@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 import { useTranslation } from 'next-i18next';
 import { twMerge } from 'tailwind-merge';
-
-import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
-import { ArticleLabel } from '@src/components/features/article/ArticleLabel';
 import { CtfImage } from '@src/components/features/contentful';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
@@ -14,7 +11,34 @@ interface ArticleHeroProps {
   isReversedLayout?: boolean;
 }
 
-/* This is for the featured post in the index and when you click in on a post */
+/**
+ * ArticleHero.tsx is a React component responsible for
+ * rendering the hero section of a blog post.
+ *
+ * It accepts an `article` object, `isFeatured` boolean,
+ * and `isReversedLayout` boolean as props.
+ *
+ * The `article` object contains the
+ * blog post data fetched from the Contentful CMS.
+ *
+ * The `isFeatured` prop is optional and
+ * indicates whether the blog post is featured.
+ *
+ * The `isReversedLayout` prop is also optional and
+ * determines the layout of the hero section.
+ * If it's true, the layout is reversed.
+ *
+ * The component uses the `useTranslation` hook for
+ * internationalization and
+ * the `useContentfulInspectorMode` hook for Contentful inspector mode.
+ *
+ * The hero section consists of
+ * the blog post title, short description, published date, and featured image.
+ *
+ * The `CtfImage` component is used to
+ * display the featured image,
+ * and the `FormatDate` component is used to format the published date.
+ */
 export const ArticleHero = ({
   article,
   isFeatured,
