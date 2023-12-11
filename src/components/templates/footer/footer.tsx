@@ -8,9 +8,19 @@ export const Footer = () => {
 
   return (
     <footer className="border-t-color mt-10 border-t border-gray200">
-      <Container className="py-8">
-        <h2 className="h4 mb-4">{t('footer.aboutUs')}</h2>
-        <div className="max-w-4xl">{t('footer.description')}</div>
+      <Container className="py-8 text-center">
+        <hr className="mb-3"></hr>
+        <div className="">
+          Developed by{' '}
+          <a
+            href="http://www.sanan.no"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-700"
+          >
+            Sanan Maarouf
+          </a>
+        </div>
       </Container>
     </footer>
   );

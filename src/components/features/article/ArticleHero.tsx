@@ -13,6 +13,8 @@ interface ArticleHeroProps {
   isFeatured?: boolean;
   isReversedLayout?: boolean;
 }
+
+/* This is for the featured post in the index and when you click in on a post */
 export const ArticleHero = ({
   article,
   isFeatured,
