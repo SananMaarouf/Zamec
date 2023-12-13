@@ -1,16 +1,13 @@
 import { HTMLProps } from 'react';
-import { twMerge } from 'tailwind-merge';
 import Slider from 'react-slick';
-
 import { ArticleTile } from '@src/components/features/article/ArticleTile';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
-import next from 'next';
 
 interface SliderProps extends HTMLProps<HTMLDivElement> {
   articles?: Array<PageBlogPostFieldsFragment | null>;
 }
 
-export const ArticleSlider = ({ articles, className, ...props }: SliderProps) => {
+export const ArticleSlider = ({ articles }: SliderProps) => {
   const settings = {
     dots: true,
     infinite: true,

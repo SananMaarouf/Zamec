@@ -1752,7 +1752,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAboutMe' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAboutMe' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageLanding' } | null> } } } | null, imageCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', fileName?: string | null, url?: string | null, width?: number | null, height?: number | null, size?: number | null } | null> } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -1938,6 +1938,15 @@ export const PageBlogPostFieldsFragmentDoc = gql`
           ...RichImageFields
         }
       }
+    }
+  }
+  imageCollection(limit: 10) {
+    items {
+      fileName
+      url
+      width
+      height
+      size
     }
   }
   relatedBlogPostsCollection(limit: 2) {

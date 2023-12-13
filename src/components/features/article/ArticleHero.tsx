@@ -1,9 +1,28 @@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 import { useTranslation } from 'next-i18next';
+import Slider from 'react-slick';
 import { twMerge } from 'tailwind-merge';
-import { CtfImage } from '@src/components/features/contentful';
+import { Gallery, Item } from 'react-photoswipe-gallery';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
+import { CtfImage } from '@src/components/features/contentful';
+
+/**
+ * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.
+ * The component takes in an `article` object, a `isFeatured` boolean, and a `isReversedLayout` boolean as props.
+ * The `article` object contains information about the article such as the title, short description, and published date.
+ * The `isFeatured` boolean indicates whether the article is featured or not.
+ * The `isReversedLayout` boolean indicates whether the layout of the component should be reversed or not.
+ *
+ * The component uses a slider with various settings for displaying the article information in a visually appealing way.
+ * The slider settings include the number of slides to show,
+ * the speed of the autoplay, the autoplay speed, the easing function for the animation, etc.
+ * The slider is also responsive and adjusts its settings based on the viewport width.
+ *
+ * The component also uses the `useTranslation` hook for
+ * - internationalization and
+ * - the `useContentfulInspectorMode` hook for inspecting the Contentful entry of the article.
+ */
 
 interface ArticleHeroProps {
   article: PageBlogPostFieldsFragment;
@@ -11,87 +30,82 @@ interface ArticleHeroProps {
   isReversedLayout?: boolean;
 }
 
-/**
- * ArticleHero.tsx is a React component responsible for
- * rendering the hero section of a blog post in the index page and
- * on the [slug].page.tsx page
- *
- * It accepts an `article` object, `isFeatured` boolean,
- * and `isReversedLayout` boolean as props.
- *
- * The `article` object contains the
- * blog post data fetched from the Contentful CMS.
- *
- * The `isFeatured` prop is optional and
- * indicates whether the blog post is featured.
- *
- * The `isReversedLayout` prop is also optional and
- * determines the layout of the hero section.
- * If it's true, the layout is reversed.
- *
- * The component uses the `useTranslation` hook for
- * internationalization and
- * the `useContentfulInspectorMode` hook for Contentful inspector mode.
- *
- * The hero section consists of
- * the blog post title, short description, published date, and featured image.
- *
- * The `CtfImage` component is used to
- * display the featured image,
- * and the `FormatDate` component is used to format the published date.
- */
-export const ArticleHero = ({
-  article,
-  isFeatured,
-  isReversedLayout = false,
-}: ArticleHeroProps) => {
-  const { t } = useTranslation();
+export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
+  /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
 
   const { title, shortDescription, publishedDate } = article;
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 200,
+    autoplaySpeed: 5000,
+    cssEase: 'linear',
+  };
 
   return (
-    <div
-      className={twMerge(
-        `flex flex-col overflow-hidden rounded-2xl border border-gray300 shadow-lg`,
-        isReversedLayout ? 'lg:flex-row-reverse' : 'lg:flex-row',
-      )}
-    >
-      <div className="flex-1 basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
-        {article.featuredImage && (
-          <CtfImage
-            nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
-            {...article.featuredImage}
-          />
-        )}
-      </div>
-
+    <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg">
+      {/* the title, subtitle, date */}
       <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:px-16 lg:py-12 xl:px-24">
-        <div className="flex flex-wrap items-center">
+        <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
+        <div className="flex flex-wrap">
+          {shortDescription && (
+            <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'shortDescription' })}>
+              {shortDescription}
+            </p>
+          )}
           <div
-            className={twMerge(
-              'ml-auto hidden pl-2 text-xs text-gray600',
-              isReversedLayout ? 'lg:block' : '',
-            )}
+            className={twMerge('ml-auto hidden self-center text-lg text-gray600 lg:block')}
             {...inspectorProps({ fieldId: 'publishedDate' })}
           >
             <FormatDate date={publishedDate} />
           </div>
         </div>
-        <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
-        {shortDescription && (
-          <p className="mt-2" {...inspectorProps({ fieldId: 'shortDescription' })}>
-            {shortDescription}
-          </p>
-        )}
-        <div
-          className={twMerge('mt-2 text-xs text-gray600', isReversedLayout ? 'lg:hidden' : '')}
-          {...inspectorProps({ fieldId: 'publishedDate' })}
-        >
-          <h1>mobile</h1>
-          <FormatDate date={publishedDate} />
-          <h2> im here </h2>
+      </div>
+      {isFeatured ? (
+        <div className="flex-1 basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
+          {article.featuredImage && (
+            <CtfImage
+              nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
+              {...article.featuredImage}
+            />
+          )}
         </div>
+      ) : (
+        <div className="flex basis-1/2 flex-col justify-center px-4 pb-6 lg:px-16 xl:px-24">
+          <Gallery>
+            <Slider {...settings}>
+              {article?.imageCollection?.items?.map((imageAsset, index) => (
+                <Item
+                  key={index}
+                  original={imageAsset?.url ?? undefined}
+                  width={imageAsset?.width?.toString()}
+                  height={imageAsset?.height?.toString()}
+                >
+                  {({ ref, open }) => (
+                    <button onClick={open}>
+                      <img
+                        ref={ref}
+                        src={imageAsset?.url ?? undefined}
+                        alt={imageAsset?.fileName ?? undefined}
+                      />
+                    </button>
+                  )}
+                </Item>
+              )) || null}
+            </Slider>
+          </Gallery>
+        </div>
+      )}
+      {/* the date on mobile */}
+      <div
+        className={twMerge('mb-2 pr-5 text-end text-base text-gray600 lg:hidden')}
+        {...inspectorProps({ fieldId: 'publishedDate' })}
+      >
+        <FormatDate date={publishedDate} />
       </div>
     </div>
   );

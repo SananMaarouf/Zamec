@@ -46,6 +46,15 @@ fragment PageBlogPostFields on PageBlogPost {
       }
     }
   }
+  imageCollection(limit: 10) {
+    items {
+      fileName
+        url
+        width
+        height
+        size
+    }
+  }
   relatedBlogPostsCollection(limit: 2) {
     items {
       ...ReferencePageBlogPostFields

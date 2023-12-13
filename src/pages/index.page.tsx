@@ -12,7 +12,7 @@ import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
-import { ArticleSlider } from '@src/components/slider';
+import { ArticleSlider } from '@src/components/ArticleSlider';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
@@ -27,6 +27,8 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {page.seoFields && <SeoFields {...page.seoFields} />}
       <Container>
         <Link href={`/${page.featuredBlogPost.slug}`}>
+          {/* TODO make articlehero render the image of the featured post on the index.  */}
+          {/* alternatively if it is a featuredblogpost render a similar articlehero called featuredHero  */}
           <ArticleHero article={page.featuredBlogPost} />
         </Link>
       </Container>
