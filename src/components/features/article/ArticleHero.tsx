@@ -33,7 +33,6 @@ interface ArticleHeroProps {
 export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
   /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
-
   const { title, shortDescription, publishedDate } = article;
   const settings = {
     dots: true,
@@ -45,7 +44,6 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
     autoplaySpeed: 5000,
     cssEase: 'linear',
   };
-
   return (
     <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg">
       {/* the title, subtitle, date */}

@@ -29,7 +29,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <Link href={`/${page.featuredBlogPost.slug}`}>
           {/* TODO make articlehero render the image of the featured post on the index.  */}
           {/* alternatively if it is a featuredblogpost render a similar articlehero called featuredHero  */}
-          <ArticleHero article={page.featuredBlogPost} />
+          <ArticleHero article={page.featuredBlogPost} isFeatured={true} />
         </Link>
       </Container>
 
