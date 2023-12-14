@@ -45,26 +45,24 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
     cssEase: 'linear',
   };
   return (
-    <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg">
+    <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg md:flex-row">
       {/* the title, subtitle, date */}
       <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:px-16 lg:py-12 xl:px-24">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
-        <div className="flex flex-wrap">
-          {shortDescription && (
-            <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'shortDescription' })}>
-              {shortDescription}
-            </p>
-          )}
-          <div
-            className={twMerge('ml-auto hidden self-center text-lg text-gray600 lg:block')}
-            {...inspectorProps({ fieldId: 'publishedDate' })}
-          >
-            <FormatDate date={publishedDate} />
-          </div>
+        {shortDescription && (
+          <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'shortDescription' })}>
+            {shortDescription}
+          </p>
+        )}
+        <div
+          className={twMerge('mr-auto hidden text-lg text-gray600 md:block')}
+          {...inspectorProps({ fieldId: 'publishedDate' })}
+        >
+          <FormatDate date={publishedDate} />
         </div>
       </div>
       {isFeatured ? (
-        <div className="flex-1 basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
+        <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
           {article.featuredImage && (
             <CtfImage
               nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
@@ -100,7 +98,7 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
       )}
       {/* the date on mobile */}
       <div
-        className={twMerge('mb-2 pr-5 text-end text-base text-gray600 lg:hidden')}
+        className={twMerge('my-2 pr-5 text-end text-base text-gray600 md:hidden')}
         {...inspectorProps({ fieldId: 'publishedDate' })}
       >
         <FormatDate date={publishedDate} />
