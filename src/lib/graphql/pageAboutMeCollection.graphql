@@ -1,23 +1,17 @@
-query PageAboutMeCollection {
-  pageAboutMeCollection(limit: 1) {
-    total
+query pageAboutMe($locale: String, $preview: Boolean) {
+  pageAboutMeCollection(locale: $locale, preview: $preview) {
     items {
-      title
-      location {
-        lat
-        lon
+      sys {
+        id
       }
+      title
       description {
         json
       }
       portrait {
-        fileName
-        height
-        width
-        __typename
         url
-        size
-        description
+        width
+        height
       }
     }
   }

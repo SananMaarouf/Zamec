@@ -13,13 +13,11 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Circle: any;
   DateTime: any;
   Dimension: any;
   HexColor: any;
   JSON: any;
   Quality: any;
-  Rectangle: any;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
@@ -834,12 +832,6 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']>;
 };
 
-export type Location = {
-  __typename?: 'Location';
-  lat?: Maybe<Scalars['Float']>;
-  lon?: Maybe<Scalars['Float']>;
-};
-
 /**
  * About you page.
  * Write who you are, what you do, how long you've done it,
@@ -850,7 +842,6 @@ export type PageAboutMe = Entry & {
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<PageAboutMeDescription>;
   linkedFrom?: Maybe<PageAboutMeLinkingCollections>;
-  location?: Maybe<Location>;
   portrait?: Maybe<Asset>;
   sys: Sys;
   title?: Maybe<Scalars['String']>;
@@ -874,16 +865,6 @@ export type PageAboutMeDescriptionArgs = {
  */
 export type PageAboutMeLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-
-/**
- * About you page.
- * Write who you are, what you do, how long you've done it,
- * Put a picture of you there if you want [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/pageAboutMe)
- */
-export type PageAboutMeLocationArgs = {
-  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -955,9 +936,6 @@ export type PageAboutMeFilter = {
   description_contains?: InputMaybe<Scalars['String']>;
   description_exists?: InputMaybe<Scalars['Boolean']>;
   description_not_contains?: InputMaybe<Scalars['String']>;
-  location_exists?: InputMaybe<Scalars['Boolean']>;
-  location_within_circle?: InputMaybe<Scalars['Circle']>;
-  location_within_rectangle?: InputMaybe<Scalars['Rectangle']>;
   portrait_exists?: InputMaybe<Scalars['Boolean']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']>;
@@ -1727,10 +1705,13 @@ export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: strin
 
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
-export type PageAboutMeCollectionQueryVariables = Exact<{ [key: string]: never; }>;
+export type PageAboutMeQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+}>;
 
 
-export type PageAboutMeCollectionQuery = { __typename?: 'Query', pageAboutMeCollection?: { __typename?: 'PageAboutMeCollection', total: number, items: Array<{ __typename?: 'PageAboutMe', title?: string | null, location?: { __typename?: 'Location', lat?: number | null, lon?: number | null } | null, description?: { __typename?: 'PageAboutMeDescription', json: any } | null, portrait?: { __typename: 'Asset', fileName?: string | null, height?: number | null, width?: number | null, url?: string | null, size?: number | null, description?: string | null } | null } | null> } | null };
+export type PageAboutMeQuery = { __typename?: 'Query', pageAboutMeCollection?: { __typename?: 'PageAboutMeCollection', items: Array<{ __typename?: 'PageAboutMe', title?: string | null, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'PageAboutMeDescription', json: any } | null, portrait?: { __typename?: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | null> } | null };
 
 export type ReferencePageBlogPostFieldsFragment = { __typename: 'PageBlogPost', slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, author?: (
     { __typename?: 'ComponentAuthor' }
@@ -1991,27 +1972,21 @@ export const SitemapPagesFieldsFragmentDoc = gql`
   }
 }
     `;
-export const PageAboutMeCollectionDocument = gql`
-    query PageAboutMeCollection {
-  pageAboutMeCollection(limit: 1) {
-    total
+export const PageAboutMeDocument = gql`
+    query pageAboutMe($locale: String, $preview: Boolean) {
+  pageAboutMeCollection(locale: $locale, preview: $preview) {
     items {
-      title
-      location {
-        lat
-        lon
+      sys {
+        id
       }
+      title
       description {
         json
       }
       portrait {
-        fileName
-        height
-        width
-        __typename
         url
-        size
-        description
+        width
+        height
       }
     }
   }
@@ -2095,8 +2070,8 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    PageAboutMeCollection(variables?: PageAboutMeCollectionQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageAboutMeCollectionQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PageAboutMeCollectionQuery>(PageAboutMeCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PageAboutMeCollection', 'query');
+    pageAboutMe(variables?: PageAboutMeQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageAboutMeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageAboutMeQuery>(PageAboutMeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageAboutMe', 'query');
     },
     pageBlogPost(variables: PageBlogPostQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageBlogPostQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostQuery>(PageBlogPostDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPost', 'query');

@@ -122,11 +122,6 @@ enum AssetOrder {
 }
 
 """
-The Circle scalar type represents a circle, defined by the coordinates of its center and a radius. The Circle type is used to represent a searchable area together with the '_within_circle' filter.
-"""
-scalar Circle
-
-"""
 To have author-related properties [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/componentAuthor)
 """
 type ComponentAuthor implements Entry {
@@ -599,11 +594,6 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-type Location {
-  lat: Float
-  lon: Float
-}
-
 """
 About you page. 
 Write who you are, what you do, how long you've done it,
@@ -613,7 +603,6 @@ type PageAboutMe implements Entry {
   contentfulMetadata: ContentfulMetadata!
   description(locale: String): PageAboutMeDescription
   linkedFrom(allowedLocales: [String]): PageAboutMeLinkingCollections
-  location(locale: String): Location
   portrait(locale: String, preview: Boolean): Asset
   sys: Sys!
   title(locale: String): String
@@ -661,9 +650,6 @@ input PageAboutMeFilter {
   description_contains: String
   description_exists: Boolean
   description_not_contains: String
-  location_exists: Boolean
-  location_within_circle: Circle
-  location_within_rectangle: Rectangle
   portrait_exists: Boolean
   sys: SysFilter
   title: String
@@ -961,11 +947,6 @@ type Query {
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
 }
-
-"""
-The Rectangle scalar type represents a rectangle, defined by the coordinates of its top left and bottom right corners. The Rectangle type is used to represent a searchable area together with the '_within_rectangle' filter.
-"""
-scalar Rectangle
 
 type ResourceLink {
   sys: ResourceSys!
