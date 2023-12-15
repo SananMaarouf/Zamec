@@ -21,7 +21,7 @@ export const Header = () => {
             <Link href="/posts" title="Projects">
               Projects
             </Link>
-            <Link href="/contact" title="Contact Me">
+            <Link href="#contact" title="Contact Me">
               Contact Me
             </Link>
           </div>

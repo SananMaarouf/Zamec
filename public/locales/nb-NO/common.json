@@ -3,6 +3,9 @@
         "relatedArticles": "Relaterte innlegg",
         "featured": "Utvalgt"
     },
+    "about": {
+        "title": "Om meg"
+    },
     "posts": {
         "allPosts": "Alle innlegg"
     },

@@ -35,7 +35,7 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Container className="">
-        <h1>About me</h1>
+        <h1>{t('about.title')}</h1>
         <CtfRichText json={page?.description?.json} />
         <CtfImage
           sys={page}

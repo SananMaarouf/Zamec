@@ -3,6 +3,9 @@
     "relatedArticles": "Related works",
     "featured": "featured"
   },
+  "about": {
+    "title": "About me"
+},
   "posts": {
     "allPosts": "All works"
   },

@@ -1,11 +1,11 @@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 import { useTranslation } from 'next-i18next';
-import Slider from 'react-slick';
 import { twMerge } from 'tailwind-merge';
-import { Gallery, Item } from 'react-photoswipe-gallery';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 import { CtfImage } from '@src/components/features/contentful';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import Slider from 'react-slick';
 
 /**
  * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.
@@ -36,7 +36,7 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
   const { title, shortDescription, publishedDate } = article;
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -45,27 +45,31 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
     cssEase: 'linear',
   };
   return (
-    <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg md:flex-row">
+    <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg md:flex-col">
       {/* the title, subtitle, date */}
       <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:px-16 lg:py-12 xl:px-24">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
-        {shortDescription && (
-          <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'shortDescription' })}>
-            {shortDescription}
-          </p>
-        )}
-        <div
-          className={twMerge('mr-auto hidden text-lg text-gray600 md:block')}
-          {...inspectorProps({ fieldId: 'publishedDate' })}
-        >
-          <FormatDate date={publishedDate} />
+        <div className="flex grow flex-col justify-between">
+          {shortDescription && (
+            <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'shortDescription' })}>
+              {shortDescription}
+            </p>
+          )}
+          <div
+            className={twMerge('mr-auto hidden text-lg text-gray600 md:block')}
+            {...inspectorProps({ fieldId: 'publishedDate' })}
+          >
+            <FormatDate date={publishedDate} />
+          </div>
         </div>
       </div>
       {isFeatured ? (
+        /* slight oversight if the featuredpost has pictures it will not show in a gallery */
+        /* TODO make gallery pictures show up in featuredpost hero when clicked post page is visited */
         <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
           {article.featuredImage && (
             <CtfImage
-              nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
+              nextImageProps={{ className: 'w-full ', priority: true, sizes: undefined }}
               {...article.featuredImage}
             />
           )}
