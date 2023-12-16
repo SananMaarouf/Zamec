@@ -34,15 +34,23 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const page = useContentfulLiveUpdates(props.page);
   return (
     <>
-      <Container className="">
-        <h1>{t('about.title')}</h1>
-        <CtfRichText json={page?.description?.json} />
-        <CtfImage
-          sys={page}
-          url={page?.portrait.url}
-          height={page?.portrait.height}
-          width={page?.portrait.width}
-        />
+      <Container className="mx-2 rounded-2xl border border-gray300 shadow-lg md:mx-4 lg:mx-auto ">
+        <h1 className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:pt-12 ">
+          {t('about.title')}
+        </h1>
+        <div className="flex flex-col lg:flex-row">
+          <div className="max-w-full lg:order-last lg:-mt-16 lg:mb-14">
+            <CtfImage
+              sys={page}
+              url={page?.portrait.url}
+              height={page?.portrait.height}
+              width={page?.portrait.width}
+            />
+          </div>
+          <div className="mt-2 pb-5 text-lg">
+            <CtfRichText json={page?.description?.json} />
+          </div>
+        </div>
       </Container>
     </>
   );
