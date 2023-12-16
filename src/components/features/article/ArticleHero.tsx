@@ -6,6 +6,7 @@ import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 import { CtfImage } from '@src/components/features/contentful';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import Slider from 'react-slick';
+import React, { useEffect } from 'react';
 
 /**
  * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.
@@ -27,27 +28,43 @@ import Slider from 'react-slick';
 interface ArticleHeroProps {
   article: PageBlogPostFieldsFragment;
   isFeatured?: boolean;
+  isIndexPage?: boolean;
   isReversedLayout?: boolean;
 }
 
-export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
+export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroProps) => {
   /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
   const { title, shortDescription, publishedDate } = article;
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     speed: 200,
     autoplaySpeed: 5000,
-    cssEase: 'linear',
+    adaptiveHeight: true,
   };
+  // hide the arrows in the slider
+  /* perform DOM manipulations in a useEffect hook to 
+     ensure they're executed on the client side after the component has been mounted.
+  */
+  useEffect(() => {
+    // Get the next and prev arrows
+    const nextArrow = document.querySelector('.slick-arrow.slick-next') as HTMLElement;
+    const prevArrow = document.querySelector('.slick-arrow.slick-prev') as HTMLElement;
+
+    // Hide the selected elements
+    if (nextArrow && prevArrow) {
+      nextArrow.style.display = 'none';
+      prevArrow.style.display = 'none';
+    }
+  }, []);
   return (
-    <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg md:flex-col">
+    <div className="flex flex-col rounded-2xl border border-gray300 shadow-lg md:flex-col lg:flex-row">
       {/* the title, subtitle, date */}
-      <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:px-16 lg:py-12 xl:px-24">
+      <div className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:py-12 xl:pl-12">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
         <div className="flex grow flex-col justify-between">
           {shortDescription && (
@@ -63,9 +80,10 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
           </div>
         </div>
       </div>
-      {isFeatured ? (
-        /* slight oversight if the featuredpost has pictures it will not show in a gallery */
-        /* TODO make gallery pictures show up in featuredpost hero when clicked post page is visited */
+      {isFeatured && isIndexPage ? (
+        /* On the index page an ArticleHero is rendered to show of the featuredBlogPost */
+        /* to avoid creating an almost identical hero i just added a conditional check to 
+            keep the ArticleHero reusable for the other posts.  */
         <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
           {article.featuredImage && (
             <CtfImage
@@ -75,7 +93,7 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
           )}
         </div>
       ) : (
-        <div className="flex basis-1/2 flex-col justify-center px-4 pb-6 lg:px-16 xl:px-24">
+        <div className="flex max-w-5xl basis-1/2 flex-col justify-center px-4 pb-6 pt-6 lg:px-16 xl:px-24">
           <Gallery>
             <Slider {...settings}>
               {article?.imageCollection?.items?.map((imageAsset, index) => (
@@ -86,11 +104,12 @@ export const ArticleHero = ({ article, isFeatured }: ArticleHeroProps) => {
                   height={imageAsset?.height?.toString()}
                 >
                   {({ ref, open }) => (
-                    <button onClick={open}>
+                    <button onClick={open} style={{ display: 'flex', justifyContent: 'center' }}>
                       <img
                         ref={ref}
                         src={imageAsset?.url ?? undefined}
                         alt={imageAsset?.fileName ?? undefined}
+                        style={{ maxHeight: '30rem' }} // Replace '500px' with the desired maximum height
                       />
                     </button>
                   )}
