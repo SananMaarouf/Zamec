@@ -14,11 +14,11 @@ export const Header = () => {
             <span className="text-xl font-bold">Zamec</span>
           </Link>
 
-          <div className="space-x-4">
-            <Link href="/about" title="About Me">
+          <div className="space-x-6 ">
+            <Link href="/about" title="About Me" className="hover:underline">
               {t('header.about')}
             </Link>
-            <Link href="/posts" title="Projects">
+            <Link href="/posts" title="Projects" className="hover:underline">
               {t('header.posts')}
             </Link>
             <Link
@@ -29,6 +29,7 @@ export const Header = () => {
                   .querySelector('#contact')
                   ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
+              className="hover:underline"
             >
               {t('header.contact')}
             </Link>
