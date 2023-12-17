@@ -9,11 +9,14 @@ export const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="border-t-color mt-10 border-t border-gray200">
-      <Socials />
-      <Contact />
+    <footer id="contact" className="border-t-color border-gray200 mt-10 border-t">
+      {/* <hr className="mb-3"></hr> */}
+      <h2 className="mb-2 text-center text-2xl">{t('footer.contact.title')}</h2>
+      <div className="border-b-color border-gray200 mt-10 flex flex-col justify-center border-b pb-5 md:flex-row">
+        <Socials />
+        <Contact />
+      </div>
       <Container className="py-8 text-center">
-        <hr className="mb-3"></hr>
         <div className="">
           {t('footer.developedBy')}{' '}
           <a

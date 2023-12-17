@@ -21,9 +21,18 @@ export const Header = () => {
             <Link href="/posts" title="Projects">
               Projects
             </Link>
-            {/* <Link href="#contact" title="Contact Me">
+            <Link
+              href="#contact"
+              title="Contact Me"
+              onClick={e => {
+                e.preventDefault();
+                document
+                  .querySelector('#contact')
+                  ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+            >
               Contact Me
-            </Link> */}
+            </Link>
           </div>
 
           <LanguageSelector />
