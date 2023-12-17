@@ -10,8 +10,6 @@ export const Footer = () => {
 
   return (
     <footer id="contact" className="border-t-color border-gray200 mt-10 border-t">
-      {/* <hr className="mb-3"></hr> */}
-      <h2 className="mb-2 text-center text-2xl">{t('footer.contact.title')}</h2>
       <div className="border-b-color border-gray200 mt-10 flex flex-col justify-center border-b pb-5 md:flex-row">
         <Socials />
         <Contact />

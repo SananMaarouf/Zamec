@@ -18,10 +18,15 @@
         "language": "Språk",
         "languageDrawer": "Bytt språk"
     },
+    "header": {
+        "about": "Om meg",
+        "posts": "Innlegg",
+        "contact": "Kontakt meg"
+    },
     "footer": {
         "aboutUs": "Om meg",
         "developedBy": "Utviklet av ",
-        "socials": "Kontakt meg",
+        "socials": "Sosiale medier",
         "contact": {
             "title": "Kontakt meg",
             "form": {

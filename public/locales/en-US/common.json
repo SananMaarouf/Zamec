@@ -18,10 +18,15 @@
     "language": "Language",
     "languageDrawer": "Toggle language drawer"
   },
+  "header": {
+    "about": "About me",
+    "posts": "Posts",
+    "contact": "Contact me"
+},
   "footer": {
     "aboutUs": "about me",
     "developedBy": "Developed by",
-    "socials": "Get in touch",
+    "socials": "Social media",
     "contact": {
       "title": "Contact me",
       "form": {

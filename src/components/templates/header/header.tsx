@@ -16,14 +16,13 @@ export const Header = () => {
 
           <div className="space-x-4">
             <Link href="/about" title="About Me">
-              About Me
+              {t('header.about')}
             </Link>
             <Link href="/posts" title="Projects">
-              Projects
+              {t('header.posts')}
             </Link>
             <Link
               href="#contact"
-              title="Contact Me"
               onClick={e => {
                 e.preventDefault();
                 document
@@ -31,7 +30,7 @@ export const Header = () => {
                   ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
-              Contact Me
+              {t('header.contact')}
             </Link>
           </div>
 

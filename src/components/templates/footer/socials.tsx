@@ -1,11 +1,13 @@
 import { Container } from '@src/components/shared/container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { useTranslation } from 'next-i18next';
 
 export const Socials = () => {
+  const { t } = useTranslation();
   return (
     <div>
-      <h2 className="text-center">Socials</h2>
+      <h2 className="text-center">{t('footer.socials')}</h2>
       <Container className="mt-1 w-fit md:mt-5">
         <a
           className="flex flex-row justify-center rounded-md bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 px-2"

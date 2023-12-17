@@ -11,7 +11,7 @@ export const Contact = () => {
   if (state.succeeded) {
     return (
       <div className="mt-3 text-center md:mt-0">
-        <h2 className="text-center">Email</h2>
+        <h2 className="text-center">{t('footer.contact.title')}</h2>
         <Container className="md:border-gray300 mx-auto mt-1 max-w-xl rounded-2xl rounded-lg border-b bg-white p-6 shadow-lg">
           <h2>{t('footer.contact.success.messageSent')}</h2>
           <button
@@ -28,7 +28,7 @@ export const Contact = () => {
   return (
     /* add flex-row when you want to implement a sitemap or another column  */
     <div className="mt-3 md:mt-0">
-      <h2 className="text-center">Email</h2>
+      <h2 className="text-center">{t('footer.contact.title')}</h2>
       <Container className="mt-1 flex flex-col justify-center md:mt-3">
         <form
           onSubmit={handleSubmit}
