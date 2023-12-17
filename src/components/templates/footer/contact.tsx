@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next';
 export const Contact = () => {
   const { t } = useTranslation();
 
-  const [state, handleSubmit, resetForm] = useForm('mayrwqwg');
+  const [state, handleSubmit, resetForm] = useForm('');
 
   if (state.succeeded) {
     return (
