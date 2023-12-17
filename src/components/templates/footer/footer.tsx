@@ -13,7 +13,7 @@ export const Footer = () => {
       <Container className="py-8 text-center">
         <hr className="mb-3"></hr>
         <div className="">
-          Developed by{' '}
+          {t('footer.developedBy')}{' '}
           <a
             href="http://www.sanan.no"
             target="_blank"

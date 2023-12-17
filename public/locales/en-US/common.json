@@ -20,7 +20,19 @@
   },
   "footer": {
     "aboutUs": "about me",
-    "description": "I am a artist specializing in ceramics and sculpture. I am currently based in Oslo."
+    "developedBy": "Developed by",
+    "contact": {
+      "title": "Contact me",
+      "form": {
+        "email": "Email",
+        "message": "Message",
+        "submit": "Submit"
+      },
+      "success": {
+        "messageSent": "Thanks for your submission!",
+        "sendNew": "Send another message"
+      }
+    }
   },
   "notFound": {
     "title": "Page not found",

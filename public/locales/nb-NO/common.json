@@ -20,7 +20,19 @@
     },
     "footer": {
         "aboutUs": "Om meg",
-        "description": "Jeg er en kunstner i Oslo som spesialiserer meg på keramikk"
+        "developedBy": "Utviklet av ",
+        "contact": {
+            "title": "Kontakt meg",
+            "form": {
+                "email": "Epost",
+                "message": "Melding",
+                "submit": "Send melding"
+            },
+            "success": {
+                "messageSent": "Melding sendt!",
+                "sendNew": "Tilbake"
+            }
+        }
     },
     "notFound": {
         "title": "Siden ble ikke funnet",
