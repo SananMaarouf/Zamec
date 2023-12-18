@@ -14,7 +14,7 @@ export const Header = () => {
             <span className="text-xl font-bold">Zamec</span>
           </Link>
 
-          <div className="space-x-6 ">
+          <div className="hidden space-x-6 md:block">
             <Link href="/about" title="About Me" className="hover:underline">
               {t('header.about')}
             </Link>
