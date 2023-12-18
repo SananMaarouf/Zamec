@@ -60,7 +60,11 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
         )}
         <div className="flex flex-1 flex-col px-4 py-3 md:px-5 md:py-4 lg:px-7 lg:py-5">
           {title && (
-            <p className="h3 text-gray800 mb-2 md:mb-3" {...inspectorProps({ fieldId: 'title' })}>
+            <p
+              className="h3 text-gray800 mb-2 truncate md:mb-3"
+              style={{ maxWidth: '100ch' }}
+              {...inspectorProps({ fieldId: 'title' })}
+            >
               {title}
             </p>
           )}
