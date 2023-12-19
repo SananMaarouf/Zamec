@@ -1,43 +1,43 @@
 import { HTMLProps } from 'react';
-import Slider from 'react-slick';
 import { ArticleTile } from '@src/components/features/article/ArticleTile';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
+import Carousel from 'react-grid-carousel';
 
 interface SliderProps extends HTMLProps<HTMLDivElement> {
   articles?: Array<PageBlogPostFieldsFragment | null>;
 }
 
 export const ArticleSlider = ({ articles }: SliderProps) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 5000,
-    cssEase: 'linear',
-
-    responsive: [
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   return articles && articles.length > 0 ? (
-    <Slider {...settings}>
+    <Carousel
+      cols={3}
+      rows={1}
+      gap={10}
+      loop
+      autoplay={3000}
+      responsiveLayout={[
+        {
+          breakpoint: 990,
+          cols: 2,
+          autoplay: 3000,
+        },
+        {
+          breakpoint: 570,
+          cols: 1,
+          autoplay: 3000,
+        },
+      ]}
+      mobileBreakpoint={300}
+    >
       {articles.map((article, index) => {
         return article ? (
-          <div key={index}>
-            <ArticleTile article={article} />
-          </div>
+          <Carousel.Item>
+            <div key={index}>
+              <ArticleTile article={article} />
+            </div>
+          </Carousel.Item>
         ) : null;
       })}
-    </Slider>
+    </Carousel>
   ) : null;
 };

@@ -6,26 +6,26 @@
 @import '~photoswipe/dist/photoswipe.css';
 
 @layer base {
-    html {
-      @apply scroll-smooth;
-    }
-    .h1,
+  html {
+    @apply scroll-smooth;
+  }
+  .h1,
   h1 {
-    @apply text-xl leading-tighter font-semibold md:text-4xl;
+    @apply text-xl font-semibold leading-tighter md:text-4xl;
   }
 
   .h2,
   h2 {
-    @apply text-xl leading-tight font-semibold md:text-3xl;
+    @apply text-xl font-semibold leading-tight md:text-3xl;
   }
 
   .h3,
   h3 {
-    @apply text-base leading-relaxed font-semibold md:text-xl;
+    @apply text-base font-semibold leading-relaxed md:text-xl;
   }
 
   .h4,
   h4 {
-    @apply text-xs leading-normal font-semibold md:text-base;
+    @apply text-xs font-semibold leading-normal md:text-base;
   }
-  }
+}
