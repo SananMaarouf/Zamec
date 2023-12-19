@@ -14,17 +14,14 @@ export const ArticleSlider = ({ articles }: SliderProps) => {
       rows={1}
       gap={10}
       loop
-      autoplay={3000}
       responsiveLayout={[
         {
           breakpoint: 990,
           cols: 2,
-          autoplay: 3000,
         },
         {
           breakpoint: 570,
           cols: 1,
-          autoplay: 3000,
         },
       ]}
       mobileBreakpoint={300}
@@ -32,7 +29,7 @@ export const ArticleSlider = ({ articles }: SliderProps) => {
       {articles.map((article, index) => {
         return article ? (
           <Carousel.Item>
-            <div key={index}>
+            <div key={index} className="flex h-full w-full flex-col">
               <ArticleTile article={article} />
             </div>
           </Carousel.Item>
