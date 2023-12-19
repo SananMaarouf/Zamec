@@ -34,8 +34,8 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const page = useContentfulLiveUpdates(props.page);
   return (
     <>
-      <Container className="mx-2 rounded-2xl border border-gray300 shadow-lg md:mx-4 lg:mx-auto ">
-        <h1 className="relative flex flex-1 basis-1/2 flex-col justify-center py-6 px-4 lg:pt-12 ">
+      <Container className="border-gray300 mx-2 rounded-2xl border shadow-lg md:mx-4 lg:mx-auto ">
+        <h1 className="relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:pt-12 ">
           {t('about.title')}
         </h1>
         <div className="flex flex-col lg:flex-row">
@@ -63,7 +63,6 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     /* ok this succesfully gets the title, description and portrait url */
     const PostsData = await gqlClient.pageAboutMe({ locale, preview });
     const page = PostsData.pageAboutMeCollection?.items[0];
-    console.log(page);
 
     if (!page) {
       return {

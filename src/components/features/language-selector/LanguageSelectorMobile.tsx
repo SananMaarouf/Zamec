@@ -34,6 +34,7 @@ export const LanguageSelectorMobile = ({ localeName, displayName }) => {
         onClick={() => setShowDrawer(currentState => !currentState)}
         aria-expanded={showDrawer}
         aria-controls="locale-drawer"
+        className="w-6" // adjust the width as needed
       >
         <FontAwesomeIcon icon={faBars} />
       </button>
