@@ -43,13 +43,10 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
 
   return (
-    <Link className="flex flex-col" href={`/${article.slug}`}>
-      <div
-        className={twMerge(
-          'border-gray300 flex flex-1 flex-col overflow-hidden rounded-2xl border shadow-sm',
-          className,
-        )}
-      >
+    /* had to add w-full h-full to these two containers and on
+       the div on articleslider.tsx */
+    <Link className="flex h-full w-full flex-col" href={`/${article.slug}`}>
+      <div className="border-gray300 flex h-full w-full flex-col overflow-hidden rounded-2xl border shadow-sm">
         {article.featuredImage && (
           <div {...inspectorProps({ fieldId: 'featuredImage' })}>
             <CtfImage
@@ -58,20 +55,15 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
             />
           </div>
         )}
-        <div className="flex flex-1 flex-col px-4 py-3 md:px-5 md:py-4 lg:px-7 lg:py-5">
+        <div className="mt-2 flex h-20 px-4 md:h-28">
           {title && (
-            <p className="h3 text-gray800 mb-2 md:mb-3" {...inspectorProps({ fieldId: 'title' })}>
-              {title}
-            </p>
-          )}
-          <div className="mt-auto flex items-center">
-            <div
-              className={twMerge('text-gray600 ml-auto pl-2 text-xs')}
-              {...inspectorProps({ fieldId: 'publishedDate' })}
+            <h2
+              className="text-gray800 text-lg md:mb-3 md:text-sm lg:text-2xl"
+              {...inspectorProps({ fieldId: 'title' })}
             >
-              <FormatDate date={publishedDate} />
-            </div>
-          </div>
+              {title}
+            </h2>
+          )}
         </div>
       </div>
     </Link>
