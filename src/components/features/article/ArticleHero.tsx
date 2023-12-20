@@ -44,7 +44,8 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
     autoplay: true,
     speed: 200,
     autoplaySpeed: 5000,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
+    draggable: true,
   };
   // hide the arrows in the slider
   /* perform DOM manipulations in a useEffect hook to 
@@ -62,11 +63,6 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
     }
   }, []);
   return (
-    /* 
-      BIIIIIIIG TODO 
-      INSTEAD OF TARGETING A BREAKPOINT
-      TARGET THE ORIENTATION OF THE DEVICE
-    */
     <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border md:flex-row landscape:flex-row">
       {/* the title, subtitle, date */}
       <div className="lg:py-12 xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6">
@@ -92,13 +88,13 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
         <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
           {article.featuredImage && (
             <CtfImage
-              nextImageProps={{ className: 'w-full ', priority: true, sizes: undefined }}
+              nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
               {...article.featuredImage}
             />
           )}
         </div>
       ) : (
-        <div className="lg:px-16 xl:px-24 flex max-w-5xl basis-1/2 flex-col justify-center px-4 pb-6 pt-6">
+        <div className="flex flex-col max-w-xl px-4 py-6 lg:px-16 xl:px-24 ">
           <Gallery>
             <Slider {...settings}>
               {article?.imageCollection?.items?.map((imageAsset, index) => (
@@ -109,12 +105,13 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
                   height={imageAsset?.height?.toString()}
                 >
                   {({ ref, open }) => (
-                    <button onClick={open} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button 
+                      onClick={open} className='self-center md:mx-auto h-full'>
                       <img
                         ref={ref}
                         src={imageAsset?.url ?? undefined}
                         alt={imageAsset?.fileName ?? undefined}
-                        style={{ maxHeight: '30rem' }} // Replace '500px' with the desired maximum height
+                        className="w-full max-h-[30rem] object-cover"
                       />
                     </button>
                   )}
@@ -124,13 +121,6 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
           </Gallery>
         </div>
       )}
-      {/* the date on mobile */}
-      {/* <div
-        className={twMerge('my-2 pr-5 text-end text-base text-gray600 md:hidden')}
-        {...inspectorProps({ fieldId: 'publishedDate' })}
-      >
-        <FormatDate date={publishedDate} />
-      </div> */}
     </div>
   );
 };

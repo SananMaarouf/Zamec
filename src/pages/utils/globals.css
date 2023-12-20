@@ -5,6 +5,17 @@
 @import '~slick-carousel/slick/slick.css';
 @import '~photoswipe/dist/photoswipe.css';
 
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
@@ -28,4 +39,5 @@
   h4 {
     @apply text-xs font-semibold leading-normal md:text-base;
   }
+  
 }
