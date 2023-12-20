@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+# yarn
+/.yarn/cache
+/.yarn/install-state.gz
+
 # next.js
 /.next/
 /out/
