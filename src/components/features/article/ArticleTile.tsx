@@ -58,7 +58,7 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
         <div className="mb-2 mt-2 flex h-20 px-4 md:h-28">
           {title && (
             <h2
-              className="text-gray800 lg:text-2xl text-lg md:mb-3 md:text-sm"
+              className="text-gray800 lg:text-2xl text-lg md:mb-3 md:text-sm landscape:text-xl"
               {...inspectorProps({ fieldId: 'title' })}
             >
               {title}

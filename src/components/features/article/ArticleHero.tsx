@@ -62,7 +62,12 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
     }
   }, []);
   return (
-    <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border shadow-lg min-[600px]:flex-row md:flex-row ">
+    /* 
+      BIIIIIIIG TODO 
+      INSTEAD OF TARGETING A BREAKPOINT
+      TARGET THE ORIENTATION OF THE DEVICE
+    */
+    <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border md:flex-row landscape:flex-row">
       {/* the title, subtitle, date */}
       <div className="lg:py-12 xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
