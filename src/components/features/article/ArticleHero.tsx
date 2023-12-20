@@ -62,9 +62,9 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
     }
   }, []);
   return (
-    <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border shadow-lg md:flex-row">
+    <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border shadow-lg min-[600px]:flex-row md:flex-row ">
       {/* the title, subtitle, date */}
-      <div className="relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:py-12 xl:pl-12">
+      <div className="lg:py-12 xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
         <div className="flex grow flex-col justify-between">
           {shortDescription && (
@@ -84,7 +84,7 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
         /* On the index page an ArticleHero is rendered to show of the featuredBlogPost */
         /* to avoid creating an almost identical hero i just added a conditional check to 
             keep the ArticleHero reusable for the other posts.  */
-        <div className="flex" {...inspectorProps({ fieldId: 'featuredImage' })}>
+        <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
           {article.featuredImage && (
             <CtfImage
               nextImageProps={{ className: 'w-full ', priority: true, sizes: undefined }}
@@ -93,7 +93,7 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
           )}
         </div>
       ) : (
-        <div className="flex max-w-5xl basis-1/2 flex-col justify-center px-4 pb-6 pt-6 lg:px-16 xl:px-24">
+        <div className="lg:px-16 xl:px-24 flex max-w-5xl basis-1/2 flex-col justify-center px-4 pb-6 pt-6">
           <Gallery>
             <Slider {...settings}>
               {article?.imageCollection?.items?.map((imageAsset, index) => (
@@ -120,12 +120,12 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
         </div>
       )}
       {/* the date on mobile */}
-      <div
-        className={twMerge('text-gray600 my-2 pr-5 text-end text-base md:hidden')}
+      {/* <div
+        className={twMerge('my-2 pr-5 text-end text-base text-gray600 md:hidden')}
         {...inspectorProps({ fieldId: 'publishedDate' })}
       >
         <FormatDate date={publishedDate} />
-      </div>
+      </div> */}
     </div>
   );
 };

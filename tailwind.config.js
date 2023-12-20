@@ -5,6 +5,11 @@ const { fontFamily } = require('tailwindcss/defaultTheme');
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    screens: {
+      
+      md: '720px',
+      
+    },
     extend: {
       maxWidth: {
         '8xl': '90rem',
