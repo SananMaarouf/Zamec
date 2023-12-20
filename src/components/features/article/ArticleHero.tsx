@@ -44,7 +44,8 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
     autoplay: true,
     speed: 200,
     autoplaySpeed: 5000,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
+    draggable: true,
   };
   // hide the arrows in the slider
   /* perform DOM manipulations in a useEffect hook to 
@@ -87,13 +88,13 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
         <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
           {article.featuredImage && (
             <CtfImage
-              nextImageProps={{ className: 'w-full ', priority: true, sizes: undefined }}
+              nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
               {...article.featuredImage}
             />
           )}
         </div>
       ) : (
-        <div className="lg:px-16 xl:px-24 flex max-w-5xl basis-1/2 flex-col justify-center px-4 pb-6 pt-6">
+        <div className="lg:px-16 xl:px-24 flex max-w-xl flex-col px-4 py-6 ">
           <Gallery>
             <Slider {...settings}>
               {article?.imageCollection?.items?.map((imageAsset, index) => (
@@ -104,12 +105,12 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
                   height={imageAsset?.height?.toString()}
                 >
                   {({ ref, open }) => (
-                    <button onClick={open} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <button onClick={open} className="h-full self-center md:mx-auto">
                       <img
                         ref={ref}
                         src={imageAsset?.url ?? undefined}
                         alt={imageAsset?.fileName ?? undefined}
-                        style={{ maxHeight: '30rem' }} // Replace '500px' with the desired maximum height
+                        className="max-h-[30rem] w-full object-cover"
                       />
                     </button>
                   )}
