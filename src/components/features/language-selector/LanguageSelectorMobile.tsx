@@ -63,24 +63,6 @@ export const LanguageSelectorMobile = ({ localeName, displayName }) => {
                 <CloseIcon width="18px" height="18px" variant="secondary" />
               </button>
             </div>
-
-            <p className="text-colorBlack mt-8 text-base font-semibold"> {t('common.language')}</p>
-            <select
-              className="border-gray300 mt-2 block w-full rounded-md border px-2 py-2 text-sm"
-              defaultValue={locale}
-              onChange={event => {
-                router.push({ pathname: router.pathname, query: router.query }, router.asPath, {
-                  locale: String(event.target.value),
-                });
-                setShowDrawer(!showDrawer);
-              }}
-            >
-              {locales?.map(availableLocale => (
-                <option key={availableLocale} value={availableLocale}>
-                  {displayName(availableLocale).of(localeName(availableLocale))}
-                </option>
-              ))}
-            </select>
             <div className="mt-10 flex flex-col space-y-6 ">
               <Link
                 href="/about"
@@ -112,6 +94,23 @@ export const LanguageSelectorMobile = ({ localeName, displayName }) => {
                 {t('header.contact')}
               </Link>
             </div>
+            <p className="text-colorBlack mt-8 text-base font-semibold"> {t('common.language')}</p>
+            <select
+              className="border-gray300 mt-2 block w-full rounded-md border px-2 py-2 text-sm"
+              defaultValue={locale}
+              onChange={event => {
+                router.push({ pathname: router.pathname, query: router.query }, router.asPath, {
+                  locale: String(event.target.value),
+                });
+                setShowDrawer(!showDrawer);
+              }}
+            >
+              {locales?.map(availableLocale => (
+                <option key={availableLocale} value={availableLocale}>
+                  {displayName(availableLocale).of(localeName(availableLocale))}
+                </option>
+              ))}
+            </select>
           </div>
         </FocusLock>
       </Portal>

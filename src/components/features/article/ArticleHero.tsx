@@ -94,7 +94,7 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
           )}
         </div>
       ) : (
-        <div className="lg:px-16 xl:px-24 flex max-w-xl flex-col px-4 py-6 ">
+        <div className="lg:px-16 xl:px-24 flex max-w-xl flex-col px-4 pb-6 ">
           <Gallery>
             <Slider {...settings}>
               {article?.imageCollection?.items?.map((imageAsset, index) => (
