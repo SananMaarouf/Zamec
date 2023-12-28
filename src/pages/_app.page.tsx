@@ -26,12 +26,12 @@ const App = ({ Component, pageProps }: AppProps) => {
       locale={locale || 'en-US'}
     >
       <>
-        <main className={`${urbanist.variable} font-sans`}>
+        <main className={`font-sans`}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
         </main>
-        <div id="portal" className={`${urbanist.variable} font-sans`} />
+        <div id="portal" className={`font-sans`} />
       </>
     </ContentfulLivePreviewProvider>
   );

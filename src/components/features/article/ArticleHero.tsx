@@ -1,12 +1,12 @@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
-import { useTranslation } from 'next-i18next';
 import { twMerge } from 'tailwind-merge';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 import { CtfImage } from '@src/components/features/contentful';
-import { Gallery, Item } from 'react-photoswipe-gallery';
 import Slider from 'react-slick';
+import { Gallery, Item } from 'react-photoswipe-gallery';
 import React, { useEffect } from 'react';
+import Image from 'next/image';
 
 /**
  * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.
@@ -27,12 +27,9 @@ import React, { useEffect } from 'react';
 
 interface ArticleHeroProps {
   article: PageBlogPostFieldsFragment;
-  isFeatured?: boolean;
-  isIndexPage?: boolean;
-  isReversedLayout?: boolean;
 }
 
-export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroProps) => {
+export const ArticleHero = ({ article }: ArticleHeroProps) => {
   /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
   const { title, shortDescription, publishedDate } = article;
@@ -65,7 +62,7 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
   return (
     <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border md:flex-row landscape:flex-row">
       {/* the title, subtitle, date */}
-      <div className="lg:py-12 xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6">
+      <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:py-12">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
         <div className="flex grow flex-col justify-between">
           {shortDescription && (
@@ -81,52 +78,35 @@ export const ArticleHero = ({ article, isFeatured, isIndexPage }: ArticleHeroPro
           </div>
         </div>
       </div>
-      {isFeatured && isIndexPage ? (
-        /* On the index page an ArticleHero is rendered to show of the featuredBlogPost */
-        /* to avoid creating an almost identical hero i just added a conditional check to 
-            keep the ArticleHero reusable for the other posts.  */
-        <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
-          {article.featuredImage && (
-            <CtfImage
-              nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
-              {...article.featuredImage}
-            />
-          )}
-        </div>
-      ) : (
-        <div className="lg:px-16 xl:px-24 flex max-w-xl flex-col px-4 pb-6 ">
-          <Gallery>
-            <Slider {...settings}>
-              {article?.imageCollection?.items?.map((imageAsset, index) => (
-                <Item
-                  key={index}
-                  original={imageAsset?.url ?? undefined}
-                  width={imageAsset?.width?.toString()}
-                  height={imageAsset?.height?.toString()}
-                >
-                  {({ ref, open }) => (
-                    <button onClick={open} className="h-full self-center md:mx-auto">
-                      <img
-                        ref={ref}
-                        src={imageAsset?.url ?? undefined}
-                        alt={imageAsset?.fileName ?? undefined}
-                        className="max-h-[30rem] w-full object-cover"
+
+      <div className="xl:px-24 flex max-w-xl flex-col px-4 pb-6 lg:px-16 ">
+        <Gallery>
+          <Slider {...settings}>
+            {article?.imageCollection?.items?.map((imageAsset, index) => (
+              <Item
+                key={index}
+                original={imageAsset?.url ?? undefined}
+                width={imageAsset?.width?.toString()}
+                height={imageAsset?.height?.toString()}
+              >
+                {({ ref, open }) => (
+                  <button onClick={open} className="h-full self-center md:mx-auto">
+                    <div ref={ref}>
+                      <Image
+                        src={imageAsset?.url?.toString() ?? ''}
+                        width={imageAsset?.width ?? 0}
+                        height={imageAsset?.height ?? 0}
+                        alt={imageAsset?.fileName ?? ''}
+                        priority={true}
                       />
-                    </button>
-                  )}
-                </Item>
-              )) || null}
-            </Slider>
-          </Gallery>
-        </div>
-      )}
-      {/* the date on mobile */}
-      {/* <div
-        className={twMerge('my-2 pr-5 text-end text-base text-gray600 md:hidden')}
-        {...inspectorProps({ fieldId: 'publishedDate' })}
-      >
-        <FormatDate date={publishedDate} />
-      </div> */}
+                    </div>
+                  </button>
+                )}
+              </Item>
+            )) || null}
+          </Slider>
+        </Gallery>
+      </div>
     </div>
   );
 };
