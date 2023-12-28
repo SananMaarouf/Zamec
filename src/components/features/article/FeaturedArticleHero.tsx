@@ -34,7 +34,7 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-300 md:flex-row landscape:flex-row">
       {/* the title, subtitle, date */}
-      <div className="lg:py-12 xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 ">
+      <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 lg:py-12 ">
         <h1 className="text-3xl" {...inspectorProps({ fieldId: 'title' })}>
           {title}
         </h1>
@@ -56,10 +56,14 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
           </div>
         </div>
       </div>
-      <div className="flex max-w-lg basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
+      <div className="flex lg:max-w-md" {...inspectorProps({ fieldId: 'featuredImage' })}>
         {article.featuredImage && (
           <CtfImage
-            nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
+            nextImageProps={{
+              className: 'object-cover w-full h-full',
+              priority: true,
+              sizes: undefined,
+            }}
             {...article.featuredImage}
           />
         )}
