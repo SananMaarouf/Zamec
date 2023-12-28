@@ -1,8 +1,6 @@
 import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
 import { Contact } from './contact';
 import { Socials } from './socials';
-
 import { Container } from '@src/components/shared/container';
 
 export const Footer = () => {

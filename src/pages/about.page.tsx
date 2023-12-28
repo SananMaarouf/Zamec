@@ -2,12 +2,10 @@ import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useTranslation } from 'next-i18next';
 import { getServerSideTranslations } from './utils/get-serverside-translations';
+import { CtfRichText, CtfImage } from '@src/components/features/contentful';
 import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
-import { PageAboutMeCollection } from '@src/lib/__generated/sdk';
-import { PageAboutMe } from '@src/lib/__generated/sdk';
-import { CtfRichText, CtfImage } from '@src/components/features/contentful';
 
 /**
  * about.page.tsx is a Next.js page component responsible for:

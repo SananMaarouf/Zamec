@@ -1,10 +1,11 @@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
+import { CtfImage } from '@src/components/features/contentful';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
-import { CtfImage } from '@src/components/features/contentful';
-import React, { useEffect } from 'react';
-
+/* import { motion } from 'framer-motion';
+ */
 /**
  * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.
  * The component takes in an `article` object, a `isFeatured` boolean, and a `isReversedLayout` boolean as props.
@@ -32,6 +33,7 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
   const { title, shortDescription, publishedDate } = article;
   return (
+    /*     <motion.div whileHover={{scale:1.05}}> */
     <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-300 md:flex-row landscape:flex-row">
       {/* the title, subtitle, date */}
       <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 lg:py-12 ">
@@ -69,5 +71,6 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
         )}
       </div>
     </div>
+    /*     </motion.div> */
   );
 };

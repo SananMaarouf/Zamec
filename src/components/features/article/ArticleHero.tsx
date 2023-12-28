@@ -1,12 +1,11 @@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
+import Image from 'next/image';
+import React, { useEffect } from 'react';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import Slider from 'react-slick';
 import { twMerge } from 'tailwind-merge';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
-import { CtfImage } from '@src/components/features/contentful';
-import Slider from 'react-slick';
-import { Gallery, Item } from 'react-photoswipe-gallery';
-import React, { useEffect } from 'react';
-import Image from 'next/image';
 
 /**
  * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.

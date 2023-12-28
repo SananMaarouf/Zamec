@@ -1,11 +1,7 @@
 import { useContentfulInspectorMode } from '@contentful/live-preview/react';
 import Link from 'next/link';
 import { HTMLProps } from 'react';
-import { twMerge } from 'tailwind-merge';
-
-import { ArticleAuthor } from '@src/components/features/article/ArticleAuthor';
 import { CtfImage } from '@src/components/features/contentful';
-import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 
 interface ArticleTileProps extends HTMLProps<HTMLDivElement> {
@@ -38,8 +34,8 @@ interface ArticleTileProps extends HTMLProps<HTMLDivElement> {
  * The tile is wrapped in a `Link` component,
  * which makes the entire tile clickable and navigates to the blog post page when clicked.
  */
-export const ArticleTile = ({ article, className }: ArticleTileProps) => {
-  const { title, publishedDate } = article;
+export const ArticleTile = ({ article }: ArticleTileProps) => {
+  const { title } = article;
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
 
   return (
@@ -58,7 +54,7 @@ export const ArticleTile = ({ article, className }: ArticleTileProps) => {
         <div className="mb-2 mt-2 flex h-20 px-4 md:h-28">
           {title && (
             <h2
-              className="text-gray800 lg:text-2xl text-lg md:mb-3 md:text-sm landscape:text-xl"
+              className="text-gray800 text-lg md:mb-3 md:text-sm lg:text-2xl landscape:text-xl"
               {...inspectorProps({ fieldId: 'title' })}
             >
               {title}

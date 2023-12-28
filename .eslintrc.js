@@ -54,7 +54,7 @@ module.exports = {
     "import/named": "off",
     "import/namespace": "off",
     "import/order": [
-      "warn",
+      "off",
       {
         groups: ["builtin", "external", ["parent", "sibling"], "index"],
         "newlines-between": "always",

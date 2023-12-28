@@ -1,7 +1,7 @@
-import { Container } from '@src/components/shared/container';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'next-i18next';
+import { Container } from '@src/components/shared/container';
 
 export const Socials = () => {
   const { t } = useTranslation();

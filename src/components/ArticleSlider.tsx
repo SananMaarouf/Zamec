@@ -1,7 +1,7 @@
 import { HTMLProps } from 'react';
+import Carousel from 'react-grid-carousel';
 import { ArticleTile } from '@src/components/features/article/ArticleTile';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
-import Carousel from 'react-grid-carousel';
 
 interface SliderProps extends HTMLProps<HTMLDivElement> {
   articles?: Array<PageBlogPostFieldsFragment | null>;

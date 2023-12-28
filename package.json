@@ -41,6 +41,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@next/bundle-analyzer": "^13.0.4",
     "dotenv": "^16.0.3",
+    "framer-motion": "^10.16.16",
     "graphql": "^16.6.0",
     "next": "^13.4.1",
     "next-compose-plugins": "^2.2.1",

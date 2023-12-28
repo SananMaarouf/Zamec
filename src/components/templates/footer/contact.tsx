@@ -1,8 +1,7 @@
-import { GetStaticProps } from 'next';
-import { getServerSideTranslations } from '@src/pages/utils/get-serverside-translations';
-import { Container } from '@src/components/shared/container';
 import { useForm, ValidationError } from '@formspree/react';
 import { useTranslation } from 'next-i18next';
+import { Container } from '@src/components/shared/container';
+
 export const Contact = () => {
   const { t } = useTranslation();
 
