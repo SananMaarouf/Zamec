@@ -11,7 +11,7 @@ export const Header = () => {
       <nav>
         <Container className="flex items-center justify-between">
           <Link href="/" title={t('common.homepage')}>
-            <span className="hover:text-underline text-2xl font-bold hover:bg-gray-800">Zamec</span>
+            <span className="text-2xl font-bold hover:underline">Zamec</span>
           </Link>
 
           <div className="hidden space-x-6 md:block">
