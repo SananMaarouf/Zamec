@@ -36,20 +36,23 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       <Container className="border-gray300 flex flex-col rounded-2xl border shadow-lg">
         {/* this is for the title, always on top */}
-        <h1 className="lg:pt-12 relative mx-auto flex px-4 py-6 ">{t('about.title')}</h1>
+        <h1 className="relative mx-auto flex px-4 py-6 lg:pt-12 ">{t('about.title')}</h1>
         {/* this is for the image and text. on mobile view they're stacked.
             on tablet and desktop they are next to eachother */}
-        <div className="lg:grid-cols-2 grid grid-cols-1">
-          <div className="max-w-screen-sm order-1 flex h-full overflow-hidden rounded-lg pb-2 md:order-2">
+        {/* when mobile it's 1 column. when breakpoint md hits it's 2 columns. */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 lg:pb-6">
+          {/* this is for the image */}
+          <div className="order-1 flex h-full max-w-screen-lg overflow-hidden rounded-lg pb-2 lg:order-2">
             <CtfImage
               sys={page}
               url={page?.portrait.url}
               height={page?.portrait.height}
               width={page?.portrait.width}
-              nextImageProps={{ className: 'object-cover h-full rounded-lg' }}
+              nextImageProps={{ className: 'object-contain rounded-lg' }}
             />
           </div>
-          <div className="order-2 mt-2 pr-4 md:order-1 md:pb-10">
+          {/* this is for the text */}
+          <div className="order-2 mt-2 pr-4 md:pb-10 lg:order-1">
             <CtfRichText json={page?.description?.json} />
           </div>
         </div>

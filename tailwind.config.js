@@ -6,9 +6,8 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
-      
       md: '720px',
-      
+      lg: '960px',
     },
     extend: {
       maxWidth: {
