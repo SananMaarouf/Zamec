@@ -18,9 +18,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const page = useContentfulLiveUpdates(props.page);
   const posts = useContentfulLiveUpdates(props.posts);
-  if (typeof window !== 'undefined') {
-    console.log(`Current viewport width: ${window.innerWidth}`);
-  }
   if (!page?.featuredBlogPost || !posts) return;
 
   return (

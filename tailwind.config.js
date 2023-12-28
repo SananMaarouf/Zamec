@@ -26,7 +26,7 @@ module.exports = {
         tighter: 1.1,
       },
       fontFamily: {
-        sans: ['var(--font-urbanist)', ...fontFamily.sans],
+        sans: ['Roboto', ...fontFamily.sans],
       },
     },
   },

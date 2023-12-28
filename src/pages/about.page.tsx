@@ -39,8 +39,8 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <h1 className="lg:pt-12 relative mx-auto flex px-4 py-6 ">{t('about.title')}</h1>
         {/* this is for the image and text. on mobile view they're stacked.
             on tablet and desktop they are next to eachother */}
-        <div className="grid grid-cols-1  md:grid-cols-2">
-          <div className="order-1 flex h-full max-w-full overflow-hidden rounded-lg pb-2 md:order-2">
+        <div className="lg:grid-cols-2 grid grid-cols-1">
+          <div className="max-w-screen-sm order-1 flex h-full overflow-hidden rounded-lg pb-2 md:order-2">
             <CtfImage
               sys={page}
               url={page?.portrait.url}
@@ -49,7 +49,7 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
               nextImageProps={{ className: 'object-cover h-full rounded-lg' }}
             />
           </div>
-          <div className="order-2 mt-2 pb-5 text-lg md:order-1">
+          <div className="order-2 mt-2 pr-4 md:order-1 md:pb-10">
             <CtfRichText json={page?.description?.json} />
           </div>
         </div>

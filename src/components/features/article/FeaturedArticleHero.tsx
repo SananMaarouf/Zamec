@@ -31,28 +31,32 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
   /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
   const { title, shortDescription, publishedDate } = article;
-
   return (
-    <div className="border-gray300 flex flex-col overflow-hidden rounded-2xl border md:flex-row landscape:flex-row">
+    <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-300 md:flex-row landscape:flex-row">
       {/* the title, subtitle, date */}
-      <div className="lg:py-12 xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6">
-        <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
+      <div className="lg:py-12 xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 ">
+        <h1 className="text-3xl" {...inspectorProps({ fieldId: 'title' })}>
+          {title}
+        </h1>
         <div className="flex grow flex-col justify-between">
           {shortDescription && (
-            <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'shortDescription' })}>
+            <p
+              className="mt-2 text-lg md:mt-4"
+              {...inspectorProps({ fieldId: 'shortDescription' })}
+            >
               {shortDescription}
             </p>
           )}
-          <p>this is the featured article hero component</p>
+
           <div
-            className={twMerge('text-gray600 mr-auto hidden text-lg md:block')}
+            className={twMerge('mr-auto hidden text-lg md:block')}
             {...inspectorProps({ fieldId: 'publishedDate' })}
           >
             <FormatDate date={publishedDate} />
           </div>
         </div>
       </div>
-      <div className="flex basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
+      <div className="flex max-w-lg basis-1/2" {...inspectorProps({ fieldId: 'featuredImage' })}>
         {article.featuredImage && (
           <CtfImage
             nextImageProps={{ className: 'w-full', priority: true, sizes: undefined }}
