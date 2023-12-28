@@ -102,7 +102,7 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
         <ul
           ref={menuRef}
           className={twMerge(
-            'top-100 absolute right-0 z-10 w-24 translate-y-3 cursor-pointer rounded-md bg-white text-center text-base shadow',
+            'top-100 absolute right-0 z-10 w-32 translate-y-3 cursor-pointer rounded-md bg-white text-center text-base shadow',
             isOpen ? 'block' : 'hidden',
           )}
           id="menu-locale"
@@ -114,7 +114,7 @@ export const LanguageSelectorDesktop = ({ localeName, displayName }) => {
               <Link
                 onKeyDown={e => handleMenuItemKeydown(e, index)}
                 role="menuitem"
-                className="block py-2"
+                className="block rounded-lg p-2 capitalize hover:bg-zinc-300"
                 href={{
                   pathname: router.pathname,
                   query: router.query,
