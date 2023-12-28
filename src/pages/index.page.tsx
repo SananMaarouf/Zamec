@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 
-import { ArticleHero } from '@src/components/features/article';
+import { FeaturedArticleHero } from '@src/components/features/article';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
@@ -28,7 +28,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {page.seoFields && <SeoFields {...page.seoFields} />}
       <Container>
         <Link href={`/${page.featuredBlogPost.slug}`}>
-          <ArticleHero article={page.featuredBlogPost} isFeatured={true} isIndexPage={true} />
+          <FeaturedArticleHero article={page.featuredBlogPost} isFeatured={true} />
         </Link>
       </Container>
 
