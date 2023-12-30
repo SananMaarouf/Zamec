@@ -3,8 +3,8 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { getServerSideTranslations } from './utils/get-serverside-translations';
-import { ArticleSlider } from '@src/components/ArticleSlider';
 import { FeaturedArticleHero } from '@src/components/features/article';
+import { ArticleSlider } from '@src/components/ArticleSlider';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
@@ -43,9 +43,6 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     const page = landingPageData.pageLandingCollection?.items[0];
 
     const blogPostsData = await gqlClient.pageBlogPostCollection({
-      /* here you can limit the amount of posts to be shown in the index */
-      /* TODO: increase limit to 6 and create a carousel. showing 3 at a time 
-          definetly steal the carousel code from sanan.no */
       limit: 6,
       locale,
       order: PageBlogPostOrder.PublishedDateDesc,
@@ -55,13 +52,6 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
       preview,
     });
     const posts = blogPostsData.pageBlogPostCollection?.items;
-
-    if (!page) {
-      return {
-        revalidate: revalidateDuration,
-        notFound: true,
-      };
-    }
 
     return {
       revalidate: revalidateDuration,
@@ -74,8 +64,10 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
     };
   } catch {
     return {
-      revalidate: revalidateDuration,
-      notFound: true,
+      redirect: {
+        destination: '/about',
+        permanent: false,
+      },
     };
   }
 };

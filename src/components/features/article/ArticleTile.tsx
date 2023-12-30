@@ -42,7 +42,7 @@ export const ArticleTile = ({ article }: ArticleTileProps) => {
     /* had to add w-full h-full to these two containers and on
        the div on articleslider.tsx */
     <Link className="flex h-full w-full flex-col" href={`/${article.slug}`}>
-      <div className="border-gray300 flex h-full w-full flex-col overflow-hidden rounded-2xl border shadow-sm">
+      <div className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-300 shadow-sm">
         {article.featuredImage && (
           <div {...inspectorProps({ fieldId: 'featuredImage' })}>
             <CtfImage

@@ -1,5 +1,6 @@
 import { HTMLProps } from 'react';
 import Carousel from 'react-grid-carousel';
+import { useTranslation } from 'next-i18next';
 import { ArticleTile } from '@src/components/features/article/ArticleTile';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
 
@@ -8,6 +9,7 @@ interface SliderProps extends HTMLProps<HTMLDivElement> {
 }
 
 export const ArticleSlider = ({ articles }: SliderProps) => {
+  const { t } = useTranslation();
   return articles && articles.length > 0 ? (
     <Carousel
       cols={3}
@@ -36,5 +38,20 @@ export const ArticleSlider = ({ articles }: SliderProps) => {
         ) : null;
       })}
     </Carousel>
-  ) : null;
+  ) : (
+    <div
+      className="
+      flex 
+      h-20 
+      flex-col 
+      overflow-hidden
+      rounded-2xl 
+      border 
+      border-gray-300
+      text-center
+      "
+    >
+      <p className="my-auto text-lg">{t('landingPage.no_articles')}</p>
+    </div>
+  );
 };

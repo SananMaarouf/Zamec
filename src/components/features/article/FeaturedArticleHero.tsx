@@ -4,8 +4,6 @@ import { twMerge } from 'tailwind-merge';
 import { CtfImage } from '@src/components/features/contentful';
 import { FormatDate } from '@src/components/shared/format-date';
 import { PageBlogPostFieldsFragment } from '@src/lib/__generated/sdk';
-/* import { motion } from 'framer-motion';
- */
 /**
  * This file defines a React component named `ArticleHero2` that is used to display a hero section for an article.
  * The component takes in an `article` object, a `isFeatured` boolean, and a `isReversedLayout` boolean as props.
@@ -71,6 +69,5 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
         )}
       </div>
     </div>
-    /*     </motion.div> */
   );
 };
