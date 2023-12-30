@@ -10,6 +10,7 @@
     "allPosts": "All works"
   },
   "landingPage": {
+    "no_articles": "No articles found",
     "latestArticles": "Latest works"
   },
   "common": {

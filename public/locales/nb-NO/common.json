@@ -10,6 +10,7 @@
         "allPosts": "Alle innlegg"
     },
     "landingPage": {
+        "no_articles": "Ingen innlegg å vise",
         "latestArticles": "Nyeste innlegg"
     },
     "common": {
