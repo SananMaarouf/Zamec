@@ -31,7 +31,7 @@ interface ArticleHeroProps {
 export const ArticleHero = ({ article }: ArticleHeroProps) => {
   /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
-  const { title, shortDescription, publishedDate } = article;
+  const { title, subtitle, publishedDate } = article;
   const settings = {
     dots: true,
     infinite: true,
@@ -64,9 +64,9 @@ export const ArticleHero = ({ article }: ArticleHeroProps) => {
       <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col justify-center px-4 py-6 lg:py-12">
         <h1 {...inspectorProps({ fieldId: 'title' })}>{title}</h1>
         <div className="flex grow flex-col justify-between">
-          {shortDescription && (
-            <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'shortDescription' })}>
-              {shortDescription}
+          {subtitle && (
+            <p className="mt-2 text-lg" {...inspectorProps({ fieldId: 'subtitle' })}>
+              {subtitle}
             </p>
           )}
           <div

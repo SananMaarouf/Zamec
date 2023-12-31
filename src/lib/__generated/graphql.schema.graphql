@@ -122,7 +122,7 @@ enum AssetOrder {
 }
 
 """
-To have author-related properties [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/componentAuthor)
+author of a post [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/componentAuthor)
 """
 type ComponentAuthor implements Entry {
   avatar(locale: String, preview: Boolean): Asset
@@ -202,7 +202,7 @@ enum ComponentAuthorOrder {
 }
 
 """
-To describe an image used in rich text fields [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/componentRichImage)
+describe an image used in rich text fields [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/componentRichImage)
 """
 type ComponentRichImage implements Entry {
   caption(locale: String): String
@@ -268,7 +268,7 @@ enum ComponentRichImageOrder {
 }
 
 """
-To have SEO-related properties to the pages we render [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/componentSeo)
+To have SEO-related properties to the pages we render [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/componentSeo)
 """
 type ComponentSeo implements Entry {
   canonicalUrl(locale: String): String
@@ -596,8 +596,7 @@ scalar JSON
 
 """
 About you page. 
-Write who you are, what you do, how long you've done it,
-Put a picture of you there if you want [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/pageAboutMe)
+Write who you are, what you do, how long you've done it and a picture of you [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/pageAboutMe)
 """
 type PageAboutMe implements Entry {
   contentfulMetadata: ContentfulMetadata!
@@ -679,7 +678,7 @@ enum PageAboutMeOrder {
 }
 
 """
-To create individual blog posts [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/pageBlogPost)
+To create individual blog posts [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/pageBlogPost)
 """
 type PageBlogPost implements Entry {
   author(locale: String, preview: Boolean, where: ComponentAuthorFilter): ComponentAuthor
@@ -692,8 +691,8 @@ type PageBlogPost implements Entry {
   publishedDate(locale: String): DateTime
   relatedBlogPostsCollection(limit: Int = 100, locale: String, order: [PageBlogPostRelatedBlogPostsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostRelatedBlogPostsCollection
   seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
-  shortDescription(locale: String): String
   slug(locale: String): String
+  subtitle(locale: String): String
   sys: Sys!
   title(locale: String): String
 }
@@ -764,13 +763,6 @@ input PageBlogPostFilter {
   relatedBlogPostsCollection_exists: Boolean
   seoFields: cfComponentSeoNestedFilter
   seoFields_exists: Boolean
-  shortDescription: String
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_in: [String]
-  shortDescription_not: String
-  shortDescription_not_contains: String
-  shortDescription_not_in: [String]
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -778,6 +770,13 @@ input PageBlogPostFilter {
   slug_not: String
   slug_not_contains: String
   slug_not_in: [String]
+  subtitle: String
+  subtitle_contains: String
+  subtitle_exists: Boolean
+  subtitle_in: [String]
+  subtitle_not: String
+  subtitle_not_contains: String
+  subtitle_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -872,7 +871,7 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 }
 
 """
-To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/l50bopksqtux/content_types/pageLanding)
+To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/zk91f39k913n/content_types/pageLanding)
 """
 type PageLanding implements Entry {
   contentfulMetadata: ContentfulMetadata!
@@ -1096,13 +1095,6 @@ input cfPageBlogPostNestedFilter {
   publishedDate_not_in: [DateTime]
   relatedBlogPostsCollection_exists: Boolean
   seoFields_exists: Boolean
-  shortDescription: String
-  shortDescription_contains: String
-  shortDescription_exists: Boolean
-  shortDescription_in: [String]
-  shortDescription_not: String
-  shortDescription_not_contains: String
-  shortDescription_not_in: [String]
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -1110,6 +1102,13 @@ input cfPageBlogPostNestedFilter {
   slug_not: String
   slug_not_contains: String
   slug_not_in: [String]
+  subtitle: String
+  subtitle_contains: String
+  subtitle_exists: Boolean
+  subtitle_in: [String]
+  subtitle_not: String
+  subtitle_not_contains: String
+  subtitle_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String

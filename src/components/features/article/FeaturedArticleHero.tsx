@@ -29,7 +29,7 @@ interface ArticleHeroProps {
 export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
   /* const { t } = useTranslation(); */
   const inspectorProps = useContentfulInspectorMode({ entryId: article.sys.id });
-  const { title, shortDescription, publishedDate } = article;
+  const { title, subtitle, publishedDate } = article;
   return (
     /*     <motion.div whileHover={{scale:1.05}}> */
     <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-300 md:flex-row landscape:flex-row">
@@ -39,12 +39,9 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
           {title}
         </h1>
         <div className="flex grow flex-col justify-between">
-          {shortDescription && (
-            <p
-              className="mt-2 text-lg md:mt-4"
-              {...inspectorProps({ fieldId: 'shortDescription' })}
-            >
-              {shortDescription}
+          {subtitle && (
+            <p className="mt-2 text-lg md:mt-4" {...inspectorProps({ fieldId: 'subtitle' })}>
+              {subtitle}
             </p>
           )}
 
