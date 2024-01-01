@@ -32,7 +32,7 @@ const About = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const page = useContentfulLiveUpdates(props.page);
   return (
     <>
-      <Container className="border-gray300 flex flex-col rounded-2xl border shadow-lg">
+      <Container className="flex flex-col rounded-2xl border border-gray-300 shadow-lg">
         {/* this is for the title, always on top */}
         <h1 className="relative mx-auto flex px-4 py-6 lg:pt-12 ">{t('about.title')}</h1>
         {/* this is for the image and text. on mobile view they're stacked.

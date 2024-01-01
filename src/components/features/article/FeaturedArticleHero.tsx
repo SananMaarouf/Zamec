@@ -44,7 +44,6 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
               {subtitle}
             </p>
           )}
-
           <div
             className={twMerge('mr-auto hidden text-lg md:block')}
             {...inspectorProps({ fieldId: 'publishedDate' })}
@@ -53,7 +52,10 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
           </div>
         </div>
       </div>
-      <div className="flex lg:max-w-md" {...inspectorProps({ fieldId: 'featuredImage' })}>
+      <div
+        className="flex md:max-w-lg lg:max-w-3xl"
+        {...inspectorProps({ fieldId: 'featuredImage' })}
+      >
         {article.featuredImage && (
           <CtfImage
             nextImageProps={{
