@@ -32,9 +32,9 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
   const { title, subtitle, publishedDate } = article;
   return (
     /*     <motion.div whileHover={{scale:1.05}}> */
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-gray-300 md:flex-row landscape:flex-row">
+    <div className="flex max-h-screen flex-col-reverse overflow-hidden rounded-md hover:outline hover:outline-1">
       {/* the title, subtitle, date */}
-      <div className="xl:pl-12 relative flex flex-1 basis-1/2 flex-col px-4 py-6 lg:py-12 ">
+      <div className="xl:pl-12 relative flex flex-col px-4 py-6 md:basis-2/6 lg:py-12 ">
         <h1 className="text-3xl" {...inspectorProps({ fieldId: 'title' })}>
           {title}
         </h1>
@@ -52,14 +52,10 @@ export const FeaturedArticleHero = ({ article }: ArticleHeroProps) => {
           </div>
         </div>
       </div>
-      <div
-        className="flex md:max-w-lg lg:max-w-3xl"
-        {...inspectorProps({ fieldId: 'featuredImage' })}
-      >
+      <div className="flex" {...inspectorProps({ fieldId: 'featuredImage' })}>
         {article.featuredImage && (
           <CtfImage
             nextImageProps={{
-              className: 'object-cover w-full h-full',
               priority: true,
               sizes: undefined,
             }}
